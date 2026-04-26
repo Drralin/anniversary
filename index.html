@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С годовщиной!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffd4e5 0%, #ffb6c1 50%, #ffc0cb 100%);
+            font-family: 'Nunito', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .screen {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .screen.active {
+            display: flex;
+        }
+        
+        .message {
+            color: #8b3a62;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: appear 1.5s ease-out 1s forwards;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            font-weight: 700;
+        }
+        
+        @keyframes appear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .continue-btn {
+            margin-top: 40px;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            background: transparent;
+            border: 3px solid #8b3a62;
+            color: #8b3a62;
+            border-radius: 30px;
+            cursor: pointer;
+            opacity: 0;
+            animation: appear 1s ease-out 2.5s forwards;
+            transition: all 0.3s ease;
+        }
+        
+        .continue-btn:hover {
+            background: #8b3a62;
+            color: #ffd4e5;
+            transform: scale(1.05);
+        }
+        
+        .gallery {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            padding: 10px;
+        }
+        
+        .gallery img {
+            position: absolute;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(139, 58, 98, 0.3);
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery img:nth-child(1) {
+            width: 28%;
+            top: 3%;
+            left: 3%;
+            transform: rotate(-5deg);
+            z-index: 3;
+        }
+        
+        .gallery img:nth-child(2) {
+            width: 25%;
+            top: 12%;
+            right: 5%;
+            transform: rotate(8deg);
+            z-index: 2;
+        }
+        
+        .gallery img:nth-child(3) {
+            width: 32%;
+            top: 28%;
+            left: 25%;
+            transform: rotate(-3deg);
+            z-index: 1;
+        }
+        
+        .gallery img:nth-child(4) {
+            width: 22%;
+            top: 42%;
+            left: 2%;
+            transform: rotate(6deg);
+            z-index: 4;
+        }
+        
+        .gallery img:nth-child(5) {
+            width: 26%;
+            top: 48%;
+            right: 3%;
+            transform: rotate(-7deg);
+            z-index: 2;
+        }
+        
+        .gallery img:nth-child(6) {
+            width: 20%;
+            top: 60%;
+            left: 28%;
+            transform: rotate(4deg);
+            z-index: 3;
+        }
+        
+        .gallery img:nth-child(7) {
+            width: 24%;
+            top: 68%;
+            left: 1%;
+            transform: rotate(-2deg);
+            z-index: 1;
+        }
+        
+        .gallery img:nth-child(8) {
+            width: 28%;
+            top: 52%;
+            right: 22%;
+            transform: rotate(5deg);
+            z-index: 2;
+        }
+        
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
+            text-align: center;
+            padding: 20px 30px;
+            background: rgba(139, 58, 98, 0.9);
+            border-radius: 25px;
+            opacity: 0;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            box-shadow: 0 10px 40px rgba(139, 58, 98, 0.5);
+            min-width: 280px;
+        }
+        
+        .overlay-subtext {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-top: 10px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .overlay-text.show {
+            animation: fadeInOut 4s ease-in-out forwards;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+        }
+        
+        .screen3-text {
+            color: #8b3a62;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            font-weight: 700;
+            animation: fadeIn 1.5s ease-out 0.5s forwards;
+        }
+        
+        .screen3-btn {
+            margin-top: 30px;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            background: transparent;
+            border: 3px solid #8b3a62;
+            color: #8b3a62;
+            border-radius: 30px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards;
+            transition: all 0.3s ease;
+        }
+        
+        .screen3-btn:hover {
+            background: #8b3a62;
+            color: #ffd4e5;
+            transform: scale(1.05);
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #ffd4e5 0%, #ffb6c1 100%);
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 90%;
+            font-family: 'Nunito', sans-serif;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-text {
+            color: #8b3a62;
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .modal-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            background: #8b3a62;
+            color: #ffd4e5;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .final-text {
+            color: #8b3a62;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            text-align: center;
+            padding: 20px;
+            font-weight: 700;
+        }
+        
+        .final-heart {
+            font-size: 80px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ff6b95;
+            font-size: 20px;
+            opacity: 0;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="screen active" id="screen1">
+        <div class="message">мы уже год вместе, представляешь?</div>
+        <button class="continue-btn" onclick="goToScreen(2)">тыкни на меня</button>
+    </div>
+    
+    <div class="screen" id="screen2">
+        <div class="gallery">
+            <img src="photo_2026-04-24 23.27.48.jpeg" alt="Фото 1">
+            <img src="photo_2026-04-24 23.27.51.jpeg" alt="Фото 2">
+            <img src="photo_2026-04-24 23.27.53.jpeg" alt="Фото 3">
+            <img src="photo_2026-04-24 23.27.54.jpeg" alt="Фото 4">
+            <img src="photo_2026-04-24 23.27.55.jpeg" alt="Фото 5">
+            <img src="photo_2026-04-24 23.27.56.jpeg" alt="Фото 6">
+            <img src="photo_2026-04-24 23.27.57.jpeg" alt="Фото 7">
+            <img src="photo_2026-04-24 23.33.10.jpeg" alt="Фото 8">
+            <div class="overlay-text" id="overlay"></div>
+        </div>
+    </div>
+    
+    <div class="screen" id="screen3">
+        <div class="screen3-text">а впереди еще больше! и я хочу это с тобой</div>
+        <button class="screen3-btn" onclick="showModal()">продолжить нашу историю</button>
+    </div>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-text">Данным действием вы подтверждаете, что никогда не будете бубнить на нее, всегда любить, обнимать и целовать. Процедура обязывает идти вместе по жизни, узнавать мир и выбирать любовь.</div>
+            <button class="modal-btn" onclick="acceptTerms()">Согласен</button>
+        </div>
+    </div>
+    
+    <script>
+        const texts = [
+            { main: 'мы познакомились 1 раз', sub: 'и этого оказалось достаточно' },
+            { main: 'мы понравились родителям 2 раза', sub: 'и оба раза всё сложилось хорошо' },
+            { main: 'мы путешествовали 3 раза', sub: 'и каждый раз по-новому' },
+            { main: 'мы получали слова поддержки 100 раз', sub: 'и запоминали каждое' },
+            { main: 'мы целовались тысячу раз', sub: 'и ни один не был лишним' }
+        ];
+        
+        let currentText = 0;
+        
+        function goToScreen(num) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen' + num).classList.add('active');
+            
+            if (num === 2) {
+                currentText = 0;
+                showNextText();
+            } else if (num === 3) {
+                currentText = 0;
+            }
+        }
+        
+        function showNextText() {
+            if (currentText < texts.length) {
+                const overlay = document.getElementById('overlay');
+                overlay.innerHTML = texts[currentText].main + '<div class="overlay-subtext">' + texts[currentText].sub + '</div>';
+                overlay.classList.remove('show');
+                void overlay.offsetWidth;
+                overlay.classList.add('show');
+                currentText++;
+                setTimeout(showNextText, 4000);
+            } else {
+                setTimeout(() => goToScreen(3), 1000);
+            }
+        }
+        
+        function showModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+        
+        function acceptTerms() {
+            document.getElementById('modal').classList.remove('active');
+            document.getElementById('screen3').innerHTML = '<div class="final-text">тогда всё честно<br>мы продолжаем</div>';
+            setTimeout(() => {
+                document.getElementById('screen3').innerHTML = '<div class="final-heart">❤</div>';
+            }, 3000);
+        }
+        
+        const heartsContainer = document.getElementById('hearts');
+        
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            heart.style.animationDelay = Math.random() * 4 + 's';
+            heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+            heartsContainer.appendChild(heart);
+        }
+    </script>
+</body>
+</html>
