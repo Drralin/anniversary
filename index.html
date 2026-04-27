@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С годовщиной!</title>
+    <title>Люблю тебя !</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
@@ -19,7 +19,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #ffd4e5 0%, #ffb6c1 50%, #ffc0cb 100%);
+            background: radial-gradient(ellipse at 20% 80%, rgba(255, 182, 193, 0.4) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(255, 192, 203, 0.3) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(255, 220, 230, 0.2) 0%, transparent 70%),
+                        linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
+            background-attachment: fixed;
             font-family: 'Nunito', sans-serif;
             overflow-x: hidden;
         }
@@ -39,14 +43,14 @@
         }
         
         .message {
-            color: #8b3a62;
+            color: #ad1457;
             font-size: clamp(1.8rem, 6vw, 3rem);
             text-align: center;
             padding: 20px;
             opacity: 0;
             transform: translateY(20px);
             animation: appear 1.5s ease-out 1s forwards;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
             font-weight: 700;
         }
         
@@ -64,8 +68,8 @@
             font-family: 'Nunito', sans-serif;
             font-weight: 700;
             background: transparent;
-            border: 3px solid #8b3a62;
-            color: #8b3a62;
+            border: 3px solid #ad1457;
+            color: #ad1457;
             border-radius: 30px;
             cursor: pointer;
             opacity: 0;
@@ -74,8 +78,8 @@
         }
         
         .continue-btn:hover {
-            background: #8b3a62;
-            color: #ffd4e5;
+            background: #ad1457;
+            color: #fce4ec;
             transform: scale(1.05);
         }
         
@@ -83,78 +87,89 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            padding: 10px;
+            padding: 5px;
+        }
+        
+        .gallery.fly-up {
+            animation: flyUp 1.5s ease-in forwards;
+        }
+        
+        @keyframes flyUp {
+            to {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
         }
         
         .gallery img {
             position: absolute;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(139, 58, 98, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(173, 20, 87, 0.25);
             object-fit: cover;
             transition: all 0.5s ease;
         }
         
         .gallery img:nth-child(1) {
-            width: 28%;
-            top: 3%;
-            left: 3%;
+            width: 42%;
+            top: 2%;
+            left: 2%;
             transform: rotate(-5deg);
             z-index: 3;
         }
         
         .gallery img:nth-child(2) {
-            width: 25%;
-            top: 12%;
-            right: 5%;
-            transform: rotate(8deg);
+            width: 38%;
+            top: 8%;
+            right: 3%;
+            transform: rotate(7deg);
             z-index: 2;
         }
         
         .gallery img:nth-child(3) {
-            width: 32%;
-            top: 28%;
-            left: 25%;
-            transform: rotate(-3deg);
-            z-index: 1;
-        }
-        
-        .gallery img:nth-child(4) {
-            width: 22%;
-            top: 42%;
-            left: 2%;
-            transform: rotate(6deg);
-            z-index: 4;
-        }
-        
-        .gallery img:nth-child(5) {
-            width: 26%;
-            top: 48%;
-            right: 3%;
-            transform: rotate(-7deg);
-            z-index: 2;
-        }
-        
-        .gallery img:nth-child(6) {
-            width: 20%;
-            top: 60%;
+            width: 45%;
+            top: 22%;
             left: 28%;
-            transform: rotate(4deg);
-            z-index: 3;
-        }
-        
-        .gallery img:nth-child(7) {
-            width: 24%;
-            top: 68%;
-            left: 1%;
             transform: rotate(-2deg);
             z-index: 1;
         }
         
-        .gallery img:nth-child(8) {
-            width: 28%;
-            top: 52%;
-            right: 22%;
+        .gallery img:nth-child(4) {
+            width: 35%;
+            top: 38%;
+            left: 1%;
             transform: rotate(5deg);
+            z-index: 4;
+        }
+        
+        .gallery img:nth-child(5) {
+            width: 40%;
+            top: 45%;
+            right: 2%;
+            transform: rotate(-6deg);
+            z-index: 2;
+        }
+        
+        .gallery img:nth-child(6) {
+            width: 32%;
+            top: 58%;
+            left: 30%;
+            transform: rotate(3deg);
+            z-index: 3;
+        }
+        
+        .gallery img:nth-child(7) {
+            width: 38%;
+            top: 68%;
+            left: 1%;
+            transform: rotate(-3deg);
+            z-index: 1;
+        }
+        
+        .gallery img:nth-child(8) {
+            width: 42%;
+            top: 55%;
+            right: 20%;
+            transform: rotate(4deg);
             z-index: 2;
         }
         
@@ -164,24 +179,24 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            font-size: clamp(1.4rem, 4vw, 2.2rem);
+            font-size: clamp(1.3rem, 4vw, 2rem);
             text-align: center;
-            padding: 20px 30px;
-            background: rgba(139, 58, 98, 0.9);
-            border-radius: 25px;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, rgba(173, 20, 87, 0.95) 0%, rgba(136, 14, 79, 0.95) 100%);
+            border-radius: 20px;
             opacity: 0;
             z-index: 10;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             font-weight: 700;
-            box-shadow: 0 10px 40px rgba(139, 58, 98, 0.5);
-            min-width: 280px;
+            box-shadow: 0 10px 40px rgba(173, 20, 87, 0.4);
+            min-width: 260px;
         }
         
         .overlay-subtext {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            margin-top: 10px;
+            font-size: clamp(0.9rem, 2.8vw, 1.3rem);
+            margin-top: 8px;
             font-weight: 400;
-            opacity: 0.9;
+            opacity: 0.95;
         }
         
         .overlay-text.show {
@@ -196,13 +211,24 @@
         }
         
         .screen3-text {
-            color: #8b3a62;
+            color: #ad1457;
             font-size: clamp(1.5rem, 5vw, 2.5rem);
             text-align: center;
             padding: 20px;
             opacity: 0;
             font-weight: 700;
-            animation: fadeIn 1.5s ease-out 0.5s forwards;
+            animation: slideUp 1.5s ease-out forwards;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .screen3-btn {
@@ -212,8 +238,8 @@
             font-family: 'Nunito', sans-serif;
             font-weight: 700;
             background: transparent;
-            border: 3px solid #8b3a62;
-            color: #8b3a62;
+            border: 3px solid #ad1457;
+            color: #ad1457;
             border-radius: 30px;
             cursor: pointer;
             opacity: 0;
@@ -222,8 +248,8 @@
         }
         
         .screen3-btn:hover {
-            background: #8b3a62;
-            color: #ffd4e5;
+            background: #ad1457;
+            color: #fce4ec;
             transform: scale(1.05);
         }
         
@@ -249,7 +275,7 @@
         }
         
         .modal-content {
-            background: linear-gradient(135deg, #ffd4e5 0%, #ffb6c1 100%);
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
             padding: 30px;
             border-radius: 25px;
             text-align: center;
@@ -259,7 +285,7 @@
         }
         
         .modal-text {
-            color: #8b3a62;
+            color: #ad1457;
             font-size: clamp(1rem, 4vw, 1.3rem);
             margin-bottom: 25px;
             line-height: 1.6;
@@ -270,8 +296,8 @@
             font-size: 1.2rem;
             font-family: 'Nunito', sans-serif;
             font-weight: 700;
-            background: #8b3a62;
-            color: #ffd4e5;
+            background: #ad1457;
+            color: white;
             border: none;
             border-radius: 30px;
             cursor: pointer;
@@ -283,7 +309,7 @@
         }
         
         .final-text {
-            color: #8b3a62;
+            color: #ad1457;
             font-size: clamp(1.3rem, 4vw, 2rem);
             text-align: center;
             padding: 20px;
@@ -311,10 +337,10 @@
         
         .heart {
             position: absolute;
-            color: #ff6b95;
+            color: #ec407a;
             font-size: 20px;
             opacity: 0;
-            animation: float 4s ease-in-out infinite;
+            animation: float 8s ease-in-out infinite;
         }
         
         @keyframes float {
@@ -323,10 +349,10 @@
                 opacity: 0;
             }
             10% {
-                opacity: 0.8;
+                opacity: 0.7;
             }
             90% {
-                opacity: 0.8;
+                opacity: 0.7;
             }
             100% {
                 transform: translateY(-100vh) rotate(360deg);
@@ -344,7 +370,7 @@
     </div>
     
     <div class="screen" id="screen2">
-        <div class="gallery">
+        <div class="gallery" id="gallery">
             <img src="photo_2026-04-24 23.27.48.jpeg" alt="Фото 1">
             <img src="photo_2026-04-24 23.27.51.jpeg" alt="Фото 2">
             <img src="photo_2026-04-24 23.27.53.jpeg" alt="Фото 3">
@@ -387,8 +413,6 @@
             if (num === 2) {
                 currentText = 0;
                 showNextText();
-            } else if (num === 3) {
-                currentText = 0;
             }
         }
         
@@ -402,7 +426,10 @@
                 currentText++;
                 setTimeout(showNextText, 4000);
             } else {
-                setTimeout(() => goToScreen(3), 1000);
+                setTimeout(() => {
+                    document.getElementById('gallery').classList.add('fly-up');
+                    setTimeout(() => goToScreen(3), 1500);
+                }, 1000);
             }
         }
         
@@ -420,14 +447,14 @@
         
         const heartsContainer = document.getElementById('hearts');
         
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 20; i++) {
             const heart = document.createElement('div');
             heart.className = 'heart';
             heart.innerHTML = '❤';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.top = Math.random() * 100 + 'vh';
-            heart.style.animationDelay = Math.random() * 4 + 's';
-            heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+            heart.style.animationDelay = Math.random() * 8 + 's';
+            heart.style.fontSize = (12 + Math.random() * 25) + 'px';
             heartsContainer.appendChild(heart);
         }
     </script>
