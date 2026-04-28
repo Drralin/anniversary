@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Люблю тебя !</title>
+    <title>С годовщиной!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
@@ -110,7 +110,7 @@
         }
         
         .gallery img:nth-child(1) {
-            width: 42%;
+            width: 45%;
             top: 2%;
             left: 2%;
             transform: rotate(-5deg);
@@ -118,7 +118,7 @@
         }
         
         .gallery img:nth-child(2) {
-            width: 38%;
+            width: 40%;
             top: 8%;
             right: 3%;
             transform: rotate(7deg);
@@ -126,23 +126,23 @@
         }
         
         .gallery img:nth-child(3) {
-            width: 45%;
-            top: 22%;
-            left: 28%;
+            width: 48%;
+            top: 20%;
+            left: 25%;
             transform: rotate(-2deg);
             z-index: 1;
         }
         
         .gallery img:nth-child(4) {
-            width: 35%;
-            top: 38%;
+            width: 42%;
+            top: 35%;
             left: 1%;
             transform: rotate(5deg);
             z-index: 4;
         }
         
         .gallery img:nth-child(5) {
-            width: 40%;
+            width: 38%;
             top: 45%;
             right: 2%;
             transform: rotate(-6deg);
@@ -150,27 +150,19 @@
         }
         
         .gallery img:nth-child(6) {
-            width: 32%;
+            width: 44%;
             top: 58%;
-            left: 30%;
+            left: 28%;
             transform: rotate(3deg);
             z-index: 3;
         }
         
         .gallery img:nth-child(7) {
-            width: 38%;
-            top: 68%;
+            width: 40%;
+            top: 70%;
             left: 1%;
             transform: rotate(-3deg);
             z-index: 1;
-        }
-        
-        .gallery img:nth-child(8) {
-            width: 42%;
-            top: 55%;
-            right: 20%;
-            transform: rotate(4deg);
-            z-index: 2;
         }
         
         .overlay-text {
@@ -308,6 +300,12 @@
             transform: scale(1.05);
         }
         
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
         .final-text {
             color: #ad1457;
             font-size: clamp(1.3rem, 4vw, 2rem);
@@ -374,11 +372,10 @@
             <img src="photo_2026-04-24 23.27.48.jpeg" alt="Фото 1">
             <img src="photo_2026-04-24 23.27.51.jpeg" alt="Фото 2">
             <img src="photo_2026-04-24 23.27.53.jpeg" alt="Фото 3">
-            <img src="photo_2026-04-24 23.27.54.jpeg" alt="Фото 4">
+            <img src="photo_2026-04-24 23.27.57.jpeg" alt="Фото 4">
             <img src="photo_2026-04-24 23.27.55.jpeg" alt="Фото 5">
             <img src="photo_2026-04-24 23.27.56.jpeg" alt="Фото 6">
-            <img src="photo_2026-04-24 23.27.57.jpeg" alt="Фото 7">
-            <img src="photo_2026-04-24 23.33.10.jpeg" alt="Фото 8">
+            <img src="photo_2026-04-24 23.33.10.jpeg" alt="Фото 7">
             <div class="overlay-text" id="overlay"></div>
         </div>
     </div>
@@ -391,7 +388,24 @@
     <div class="modal" id="modal">
         <div class="modal-content">
             <div class="modal-text">Данным действием вы подтверждаете, что никогда не будете бубнить на нее, всегда любить, обнимать и целовать. Процедура обязывает идти вместе по жизни, узнавать мир и выбирать любовь.</div>
-            <button class="modal-btn" onclick="acceptTerms()">Согласен</button>
+            <button class="modal-btn" onclick="showSure()">Согласен</button>
+        </div>
+    </div>
+    
+    <div class="modal" id="modal2">
+        <div class="modal-content">
+            <div class="modal-text">Уверен?</div>
+            <button class="modal-btn" onclick="showExact()">Да</button>
+        </div>
+    </div>
+    
+    <div class="modal" id="modal3">
+        <div class="modal-content">
+            <div class="modal-text">Точно?</div>
+            <div class="btn-group">
+                <button class="modal-btn" onclick="finalAccept()">да</button>
+                <button class="modal-btn" onclick="trickNo()" style="margin-left: 10px; background: transparent; color: #ad1457; border: 2px solid #ad1457;">нет</button>
+            </div>
         </div>
     </div>
     
@@ -413,6 +427,11 @@
             if (num === 2) {
                 currentText = 0;
                 showNextText();
+            } else if (num === 3) {
+                const text3 = document.querySelector('#screen3 .screen3-text');
+                const btn3 = document.querySelector('#screen3 .screen3-btn');
+                if (text3) text3.style.animation = 'slideUp 1.5s ease-out forwards';
+                if (btn3) btn3.style.animation = 'fadeIn 1s ease-out 1.5s forwards';
             }
         }
         
@@ -437,12 +456,33 @@
             document.getElementById('modal').classList.add('active');
         }
         
-        function acceptTerms() {
+        function showSure() {
             document.getElementById('modal').classList.remove('active');
+            document.getElementById('modal2').classList.add('active');
+        }
+        
+        function showExact() {
+            document.getElementById('modal2').classList.remove('active');
+            document.getElementById('modal3').classList.add('active');
+        }
+        
+        function finalAccept() {
+            document.getElementById('modal3').classList.remove('active');
             document.getElementById('screen3').innerHTML = '<div class="final-text">тогда всё честно<br>мы продолжаем</div>';
             setTimeout(() => {
                 document.getElementById('screen3').innerHTML = '<div class="final-heart">❤</div>';
             }, 3000);
+        }
+        
+        function trickNo() {
+            document.getElementById('modal3').classList.remove('active');
+            document.getElementById('screen3').innerHTML = '<div class="final-text">хахаха никто и не спрашивает</div>';
+            setTimeout(() => {
+                document.getElementById('screen3').innerHTML = '<div class="final-text">давай еще раз</div>';
+                setTimeout(() => {
+                    document.getElementById('modal3').classList.add('active');
+                }, 1000);
+            }, 2000);
         }
         
         const heartsContainer = document.getElementById('hearts');
